@@ -4,6 +4,8 @@ import asyncio
 import os
 import sys
 import typing
+from dotenv import load_dotenv
+load_dotenv()
 
 # Force torch - must be set before importing bittensor
 os.environ["USE_TORCH"] = "1"

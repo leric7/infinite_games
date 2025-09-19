@@ -1,4 +1,4 @@
-from forecasting_tools import BinaryQuestion, QuestionState, TemplateBot
+from forecasting_tools import BinaryQuestion, QuestionState, TemplateBot, GeneralLlm
 
 from neurons.miner.forecasters.base import BaseForecaster
 from neurons.miner.models.event import MinerEvent
@@ -13,6 +13,10 @@ class LLMForecaster(BaseForecaster):
         self.bot = TemplateBot(
             research_reports_per_question=1,
             predictions_per_research_report=5,
+            llms={
+                "default": GeneralLlm(model="openrouter/google/gemini-2.5-pro", temperature=0),
+                "summarizer": "openai/gpt-4o-mini",
+            },
         )
 
     async def _get_question(self) -> BinaryQuestion:
