@@ -36,10 +36,9 @@ def get_forecaster(logger: InfiniteGamesLogger):
 
     async def assign_forecaster(event: MinerEvent) -> typing.Type[BaseForecaster]:
         # Change to `LLMForecaster` to use the LLM forecaster
-        return LLMForecasterWithSN13(
+        return LLMForecaster(
             event,
             logger=logger,
-            sn13_client=sn13_client,
         )
 
     return assign_forecaster
